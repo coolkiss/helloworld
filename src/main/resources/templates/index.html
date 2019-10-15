@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="icon" type="image/x-icon" href="">
+    <meta charset="UTF-8">
+    <title>DemoApp</title>
+    <script type= "text/javascript" src= "https://developer-test.yonyoucloud.com/download/iuap-insight.min.js"></script>
+    <script>
+        function getCookie(name) {
+            var arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
+            if (arr != null) {
+                return arr[2];
+            }
+            return '';
+        }
+        var userName = getCookie('userName');
+        uis.start({
+            trackerUrl: 'https://developer-test.yonyoucloud.com/iuapInsight/collect',
+            userId:userName,
+            siteId:'mk5hprx1'
+        });
+    </script>
+</head>
+<body>
+<h4 th:text="${title}"></h4>
+<ul>
+    <li th:each="operation : ${operationList}">
+        <div th:if="${operation.method=='get'}" >
+            <a th:href="@{${operation.uri}}" th:text="${operation.name}">name</a>
+        </div>
+        <div th:if="${operation.method=='post'}" >
+            <form th:action="@{${operation.uri}}" method="post">
+                <input name="value" type="text" />
+                <input name="submit" type="submit" value="提交"/>
+            </form>
+        </div>
+    </li>
+</ul>
+<p th:include="echo :: echoContent"></p>
+</body>
+</html>
