@@ -56,7 +56,7 @@
 
 
     <build>
-        <finalName>helloworld-jenkins-pipeline</finalName>
+        <finalName>helloworld</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
